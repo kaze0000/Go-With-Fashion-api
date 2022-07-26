@@ -10,12 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_24_080934) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_26_073348) do
   create_table "posts", charset: "utf8mb4", force: :cascade do |t|
-    t.string "title"
-    t.string "content"
+    t.string "body"
+    t.datetime "prefferd_at"
+    t.integer "prefferd_prefecture"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "user_favorite_brands", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_favorite_brands_on_user_id"
+  end
+
+  create_table "user_profiles", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "gender"
+    t.string "self_introducement"
+    t.string "twitter"
+    t.string "instagram"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
@@ -26,4 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_24_080934) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "posts", "users"
+  add_foreign_key "user_favorite_brands", "users"
+  add_foreign_key "user_profiles", "users"
 end
