@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_26_073348) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_02_022521) do
   create_table "posts", charset: "utf8mb4", force: :cascade do |t|
     t.string "body"
     t.datetime "prefferd_at"
@@ -29,9 +29,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_073348) do
     t.index ["user_id"], name: "index_user_favorite_brands_on_user_id"
   end
 
+  create_table "user_images", charset: "utf8mb4", force: :cascade do |t|
+    t.string "image"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_images_on_user_id"
+  end
+
   create_table "user_profiles", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.integer "gender"
+    t.integer "age"
     t.string "self_introducement"
     t.string "twitter"
     t.string "instagram"
@@ -51,5 +60,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_073348) do
 
   add_foreign_key "posts", "users"
   add_foreign_key "user_favorite_brands", "users"
+  add_foreign_key "user_images", "users"
   add_foreign_key "user_profiles", "users"
 end

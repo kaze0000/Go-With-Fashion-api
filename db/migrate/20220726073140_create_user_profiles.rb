@@ -3,6 +3,7 @@ class CreateUserProfiles < ActiveRecord::Migration[7.0]
     create_table :user_profiles do |t|
       t.string :name, null: false
       t.integer :gender
+      t.integer :age
       t.string :self_introducement
       t.string :twitter
       t.string :instagram

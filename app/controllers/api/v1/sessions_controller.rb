@@ -1,9 +1,6 @@
 module Api
   module V1
     class SessionsController < ApplicationController
-      # before_action :current_user, only: :logged_in?
-      include RackSessionFix
-
       def login
         @user = User.find_by(email: _session_params[:email])
 
