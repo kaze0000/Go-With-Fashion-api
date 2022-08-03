@@ -2,8 +2,10 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :user_favorite_brands
+  has_many :brands, through: :user_favorite_brands
   has_many :posts
   has_one :user_profile
+  has_one :user_image
 
   validates :email, presence: true
   validates :email, uniqueness: true

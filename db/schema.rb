@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_02_022521) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_02_032144) do
+  create_table "brands", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", charset: "utf8mb4", force: :cascade do |t|
     t.string "body"
     t.datetime "prefferd_at"
@@ -22,15 +28,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_02_022521) do
   end
 
   create_table "user_favorite_brands", charset: "utf8mb4", force: :cascade do |t|
-    t.string "name", null: false
     t.bigint "user_id", null: false
+    t.bigint "brand_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["brand_id"], name: "index_user_favorite_brands_on_brand_id"
     t.index ["user_id"], name: "index_user_favorite_brands_on_user_id"
   end
 
   create_table "user_images", charset: "utf8mb4", force: :cascade do |t|
-    t.string "image"
+    t.string "image", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,14 +58,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_02_022521) do
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
-    t.string "email"
-    t.string "password_digest"
+    t.string "email", null: false
+    t.string "password_digest", null: false
     t.datetime "recently_sign_in"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_foreign_key "posts", "users"
+  add_foreign_key "user_favorite_brands", "brands"
   add_foreign_key "user_favorite_brands", "users"
   add_foreign_key "user_images", "users"
   add_foreign_key "user_profiles", "users"
