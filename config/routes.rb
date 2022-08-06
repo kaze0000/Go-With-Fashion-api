@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       delete '/logout', to: 'sessions#logout'
       get '/logged_in', to: 'sessions#logged_in?'
       # post '/user_profile', to: 'user_profiles#create'
+      resources :posts, only: %i[index create destroy show]
       resources :brands, only: %i[index destroy]
       resources :user_images, only: %i[new create]
       resources :user_profiles, only: %i[new create] do

@@ -10,20 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_02_032144) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_03_083917) do
+  create_table "areas", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "brands", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "posted_brands", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "brand_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["brand_id"], name: "index_posted_brands_on_brand_id"
+    t.index ["post_id"], name: "index_posted_brands_on_post_id"
+  end
+
   create_table "posts", charset: "utf8mb4", force: :cascade do |t|
     t.string "body"
-    t.datetime "prefferd_at"
-    t.integer "prefferd_prefecture"
+    t.date "preferred_at"
+    t.bigint "area_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["area_id"], name: "index_posts_on_area_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -65,6 +81,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_02_032144) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "posted_brands", "brands"
+  add_foreign_key "posted_brands", "posts"
+  add_foreign_key "posts", "areas"
   add_foreign_key "posts", "users"
   add_foreign_key "user_favorite_brands", "brands"
   add_foreign_key "user_favorite_brands", "users"
