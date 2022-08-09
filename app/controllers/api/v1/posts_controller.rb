@@ -9,7 +9,11 @@ module Api
           user_image = post.user.user_image
           posted_brands = post.brands
           posted_area = post.area
-          posts_and_user_profiles_hash[i] = [post: post, user_profile: user_profile, user_image: user_image, posted_brands: posted_brands, posted_area: posted_area]
+          posts_and_user_profiles_hash[i] = [post: post,
+                                             user_profile: user_profile,
+                                             user_image: user_image,
+                                             posted_brands: posted_brands,
+                                             posted_area: posted_area]
         end
         render json: posts_and_user_profiles_hash
       end

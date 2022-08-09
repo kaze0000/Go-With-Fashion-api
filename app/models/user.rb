@@ -6,6 +6,10 @@ class User < ApplicationRecord
   has_many :posts
   has_one :user_profile
   has_one :user_image
+  has_many :chat_messages
+  has_many :chat_rooms, through: :chat_messages
+  has_many :chat_room_users
+  has_many :chat_rooms, through: :chat_room_users
 
   validates :email, presence: true
   validates :email, uniqueness: true

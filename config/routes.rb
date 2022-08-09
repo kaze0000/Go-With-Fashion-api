@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'brands/index'
   namespace "api" do
     namespace "v1" do
       # resources :posts, only: %i[index]
@@ -7,7 +6,8 @@ Rails.application.routes.draw do
       post '/login', to: 'sessions#login'
       delete '/logout', to: 'sessions#logout'
       get '/logged_in', to: 'sessions#logged_in?'
-      # post '/user_profile', to: 'user_profiles#create'
+      resources :chat_messages, only: %i[index show create]
+      resources :chat_rooms, only: %i[index new show create]
       resources :posts, only: %i[index create destroy show]
       resources :brands, only: %i[index destroy]
       resources :user_images, only: %i[new create]
