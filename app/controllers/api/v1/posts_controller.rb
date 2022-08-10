@@ -2,7 +2,7 @@ module Api
   module V1
     class PostsController < ApplicationController
       def index
-        posts = Post.all
+        posts = Post.all.order(preferred_at: :desc)
         posts_and_user_profiles_hash = {}
         posts.each_with_index do |post, i|
           user_profile = post.user.user_profile
