@@ -8,7 +8,7 @@ module Api
         chat_room = ChatRoom.find(params[:id])
         other_user = chat_room.chat_messages.where.not(user_id: current_user.id)[0]&.user
 
-        chat_messages = chat_room.chat_messages
+        chat_messages = chat_room.chat_messages.order(created_at: :desc)
 
         my_profile = current_user.user_profile
         my_image = current_user.user_image
