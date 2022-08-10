@@ -39,7 +39,7 @@ gem "rack-cors"
 # original
 gem 'carrierwave'
 # gem 'fog-aws'
-# gem 'mini_magic'
+gem 'mini_magick'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
