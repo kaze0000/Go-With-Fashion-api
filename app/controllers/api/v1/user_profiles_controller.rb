@@ -13,7 +13,6 @@ module Api
       end
 
       def create
-        # binding.irb
         if current_user.user_profile.present?
           # update的な扱い
           user_profile = current_user.user_profile.update(_user_profile_update_params)

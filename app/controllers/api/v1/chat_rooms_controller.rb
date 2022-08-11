@@ -9,7 +9,8 @@ module Api
 
         chat_rooms.each_with_index do |chat_room, i|
           other_users << chat_room.chat_room_users.where.not(user_id: current_user.id)[0].user
-          chat_room_index_hash[i] = {chat_room: chat_room, chat_messages: chat_room.chat_messages.order(created_at: :desc)}
+          chat_room_index_hash[i] = {chat_room: chat_room,
+                                     chat_messages: chat_room.chat_messages.order(created_at: :desc)}
         end
 
         other_users.each_with_index do |other_user, i|

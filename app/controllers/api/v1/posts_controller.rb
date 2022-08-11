@@ -25,7 +25,11 @@ module Api
         user_image = post.user.user_image
         posted_brands = post.brands
         posted_area = post.area
-        post_and_user_profile_hash[0] = [post: post, user_profile: user_profile, user_image: user_image, posted_brands: posted_brands, posted_area: posted_area]
+        post_and_user_profile_hash[0] = [post: post,
+                                         user_profile: user_profile,
+                                         user_image: user_image,
+                                         posted_brands: posted_brands,
+                                         posted_area: posted_area]
         render json: post_and_user_profile_hash
       end
 
@@ -42,7 +46,6 @@ module Api
         brand_lists.each do |brand_list|
           brand = Brand.where(name: brand_list).first_or_initialize
           brand.save!
-
           posted_brand = PostedBrand.where(post_id: post.id, brand_id: brand.id).first_or_initialize
           posted_brand.save!
         end
