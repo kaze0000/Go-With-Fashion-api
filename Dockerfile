@@ -1,5 +1,6 @@
 FROM ruby:3.1.1
 RUN mkdir /app
+ENV RAILS_ENV=production
 WORKDIR /app
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
