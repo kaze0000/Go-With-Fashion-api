@@ -53,6 +53,8 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  # herokuでの「Blocked host: go-with-fashion-api.herokuapp.com」を対策
+  config.hosts << "go-with-fashion-api.herokuapp.com"
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
