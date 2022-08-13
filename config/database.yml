@@ -4,7 +4,8 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password:
-  host: localhost
+  # host: localhost
+  host: mysql://bfbc29ecfd11ce:beafd803@us-cdbr-east-06.cleardb.net/heroku_e6476cfea015adf?reconnect=true
 
 development:
   <<: *default
